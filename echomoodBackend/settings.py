@@ -93,7 +93,7 @@ WSGI_APPLICATION = 'echomoodBackend.wsgi.application'
 
 import dj_database_url
 DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+    'default': dj_database_url.config(default=os.environ.get('postgresql://echoblogdb_user:opJ0tQg8GDsOzML2Wj88lfRSM5dOZmIM@dpg-d26gqgogjchc73did0ag-a.oregon-postgres.render.com/echoblogdb'))
 }
 
 
