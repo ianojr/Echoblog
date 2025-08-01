@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: echoblog-backend
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn echomoodBackend.wsgi:application
+    envVars:
+      - key: DEBUG
+        value: False
+      - key: DJANGO_ALLOWED_HOSTS
+        value: echomood.onrender.com
