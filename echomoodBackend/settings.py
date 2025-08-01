@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
-
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -91,21 +91,30 @@ WSGI_APPLICATION = 'echomoodBackend.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 
-import dj_database_url
-DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get('postgresql://echoblogdb_user:opJ0tQg8GDsOzML2Wj88lfRSM5dOZmIM@dpg-d26gqgogjchc73did0ag-a.oregon-postgres.render.com/echoblogdb'))
-}
+
+# DATABASES = {
+#     'default': dj_database_url.config(default=os.environ.get('postgresql://echoblogdb_user:opJ0tQg8GDsOzML2Wj88lfRSM5dOZmIM@dpg-d26gqgogjchc73did0ag-a.oregon-postgres.render.com/echoblogdb'))
+# }
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'EchomoodDb',
-        'USER': 'postgres',
-        'PASSWORD': 'ianojr',
-        'HOST': 'localhost',
-    }
+    'default': dj_database_url.config(
+        default=os.getenv('postgresql://echoblogdb_user:opJ0tQg8GDsOzML2Wj88lfRSM5dOZmIM@dpg-d26gqgogjchc73did0ag-a.oregon-postgres.render.com/echoblogdb'),
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'EchomoodDb',
+#         'USER': 'postgres',
+#         'PASSWORD': 'ianojr',
+#         'HOST': 'localhost',
+#     }
+# }
 
 
 # Password validation
